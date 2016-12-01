@@ -9,6 +9,7 @@ import org.ansj.elasticsearch.cat.AnalyzerCatAction;
 import org.ansj.elasticsearch.cat.AnsjCatAction;
 import org.ansj.elasticsearch.index.analysis.AnsjAnalysis;
 import org.ansj.elasticsearch.index.analysis.AnsjAnalysisBinderProcessor;
+import org.ansj.elasticsearch.pubsub.redis.AddTermAction;
 import org.ansj.elasticsearch.rest.RestAnsjAction;
 import org.elasticsearch.action.ActionModule;
 import org.elasticsearch.common.inject.AbstractModule;
@@ -55,6 +56,9 @@ public class AnalysisAnsjPlugin extends Plugin {
 			Multibinder<AbstractCatAction> catActionMultibinder = Multibinder.newSetBinder(binder(), AbstractCatAction.class);
 			catActionMultibinder.addBinding().to(AnalyzerCatAction.class).asEagerSingleton();
 			catActionMultibinder.addBinding().to(AnsjCatAction.class).asEagerSingleton();
+			//Add new word
+			catActionMultibinder.addBinding().to(AddTermAction.class).asEagerSingleton();
+
 		}
 	}
 }
